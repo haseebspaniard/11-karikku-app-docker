@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coco Bliss · Kerala Edition — Tender Coconut from the Backwaters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&family=Tiro+Malayalam+Hindi:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   COCO BLISS · Kerala Edition
+   Original design — independent of any existing brand
+============================================================ */
+
+:root {
+  --cream: #fdf5e2;
+  --cream-2: #f6e9c8;
+  --paper: #fbf3df;
+  --tender: oklch(0.62 0.13 150);
+  --tender-deep: oklch(0.42 0.11 150);
+  --tender-pale: oklch(0.86 0.07 145);
+  --terra: oklch(0.62 0.14 42);
+  --terra-deep: oklch(0.48 0.13 38);
+  --teal: oklch(0.38 0.08 205);
+  --teal-deep: oklch(0.26 0.06 210);
+  --ink: #1a1612;
+  --muted: #6a5d4a;
+
+  --shadow-1: 0 14px 30px -16px rgba(60, 40, 10, 0.25);
+  --shadow-2: 0 30px 60px -28px rgba(60, 40, 10, 0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+
+  background-image:
+    radial-gradient(circle at 12% 10%, oklch(0.92 0.06 90 / 0.5), transparent 40%),
+    radial-gradient(circle at 88% 70%, oklch(0.88 0.08 145 / 0.4), transparent 40%);
+}
+
+h1, h2, h3, h4 {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(3.2rem, 9vw, 7.5rem); }
+h2 { font-size: clamp(2.4rem, 5.5vw, 4.4rem); }
+h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
+
+em.it { font-style: italic; color: var(--terra); font-weight: 400; }
+em.tg { font-style: italic; color: var(--tender-deep); font-weight: 400; }
+
+.ml { font-family: "Tiro Malayalam Hindi", serif; font-style: italic; }
+
+.container {
+  width: min(1320px, 92%);
+  margin-inline: auto;
+}
+
+section { padding: clamp(80px, 9vw, 130px) 0; position: relative; }
+
+.kicker {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--tender-deep);
+  font-weight: 600;
+}
+.kicker::before {
+  content: ""; width: 30px; height: 1px;
+  background: var(--tender-deep);
+}
+.kicker .ml { letter-spacing: 0; text-transform: none; font-size: 1rem; }
+
+/* -------------------- ANNOUNCEMENT STRIP -------------------- */
+.strip {
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative;
+}
+.strip-track {
+  display: flex; gap: 50px;
+  width: max-content;
+  animation: scroll 35s linear infinite;
+}
+.strip-track span { display: inline-flex; align-items: center; gap: 12px; }
+.strip-track span::before {
+  content: "✦"; color: var(--terra); font-size: 0.7rem;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* -------------------- NAV -------------------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--cream);
+  border-bottom: 1px solid rgba(60,40,10,0.1);
+  padding: 18px 0;
+  transition: padding 0.3s, background 0.3s;
+}
+.nav.scrolled { padding: 12px 0; background: rgba(253, 245, 226, 0.95); backdrop-filter: blur(14px); }
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: "Newsreader", serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.brand-mark {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, oklch(0.78 0.14 145), var(--tender-deep) 80%);
+  position: relative;
+  box-shadow: inset -3px -3px 8px rgba(0,0,0,0.2);
+}
+.brand-mark::before {
+  content: ""; position: absolute;
+  top: -5px; left: 50%;
+  transform: translateX(-50%);
+  width: 14px; height: 14px;
+  background: var(--tender-deep);
+  border-radius: 50% 50% 0 50%;
+  transform: translateX(-50%) rotate(-30deg);
+}
+.brand em { font-style: italic; color: var(--terra); font-weight: 400; }
+
+.nav-links {
+  display: flex; gap: 4px; list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+.nav-links a:hover { background: var(--cream-2); color: var(--tender-deep); }
+
+.nav-cta {
+  background: var(--ink); color: var(--cream) !important;
+  padding: 10px 22px !important;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.nav-cta:hover { background: var(--terra) !important; color: var(--cream) !important; }
+
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; width: 36px; align-items: center; }
+.nav-toggle span { width: 22px; height: 2px; background: var(--ink); }
+
+/* -------------------- HERO -------------------- */
+.hero { padding: 60px 0 90px; position: relative; overflow: hidden; }
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+.hero-headline {
+  font-family: "Newsreader", serif;
+  font-weight: 500;
+  line-height: 0.92;
+  font-size: clamp(3.5rem, 10vw, 8.4rem);
+  letter-spacing: -0.03em;
+}
+.hero-headline .row { display: block; }
+.hero-headline .row.shift { padding-left: 14%; }
+.hero-headline em { font-style: italic; color: var(--terra); font-weight: 400; }
+.hero-headline .ml {
+  color: var(--tender-deep);
+  font-size: 0.85em;
+  display: inline-block;
+  vertical-align: 0.04em;
+}
+.hero-sub {
+  margin-top: 36px;
+  max-width: 440px;
+  display: flex; flex-direction: column; gap: 22px;
+}
+.hero-sub p {
+  font-size: 1.1rem;
+  color: var(--muted);
+  font-family: "Newsreader", serif;
+  font-style: italic;
+}
+.hero-meta {
+  margin-top: 28px;
+  display: flex; align-items: center; gap: 24px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 26px;
+  border-radius: 100px;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative; overflow: hidden;
+}
+.btn-primary {
+  background: var(--ink); color: var(--cream);
+}
+.btn-primary:hover {
+  background: var(--terra);
+  transform: translate(2px, -2px);
+  box-shadow: -4px 4px 0 var(--ink);
+}
+.btn-arrow {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--cream); color: var(--ink);
+  display: grid; place-items: center;
+  font-size: 0.85rem;
+}
+
+.hero-rating {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.hero-rating strong { color: var(--ink); font-weight: 600; }
+.hero-rating .stars { color: var(--terra); letter-spacing: 1px; }
+
+/* Tender coconut illustration block */
+.hero-visual {
+  position: relative;
+  aspect-ratio: 1;
+  display: grid; place-items: center;
+}
+.hero-disc-bg {
+  position: absolute; inset: 6%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, oklch(0.85 0.1 60), var(--terra) 80%);
+  box-shadow: inset 0 0 80px rgba(0,0,0,0.2), var(--shadow-2);
+  animation: float 7s ease-in-out infinite;
+}
+.hero-coconut-svg {
+  position: relative; z-index: 2;
+  width: 80%;
+  filter: drop-shadow(0 30px 30px rgba(0,0,0,0.25));
+  animation: float 7s ease-in-out infinite reverse;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+
+.hero-label {
+  position: absolute;
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  background: var(--cream);
+  border: 1px solid rgba(60,40,10,0.15);
+  padding: 10px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  box-shadow: var(--shadow-1);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.hero-label::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--tender);
+}
+.hero-label.l1 { top: 14%; right: -4%; animation: float 5s ease-in-out infinite; }
+.hero-label.l2 { bottom: 18%; left: -8%; animation: float 5s ease-in-out infinite 1s; }
+
+/* Big watermark Malayalam */
+.hero-watermark {
+  position: absolute;
+  bottom: -30px; right: -2%;
+  font-family: "Tiro Malayalam Hindi", serif;
+  font-style: italic;
+  font-size: clamp(8rem, 18vw, 18rem);
+  color: var(--tender);
+  opacity: 0.1;
+  line-height: 0.8;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* -------------------- TRUST ROW -------------------- */
+.trust {
+  padding: 36px 0;
+  border-top: 1px solid rgba(60,40,10,0.1);
+  border-bottom: 1px solid rgba(60,40,10,0.1);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 30px;
+}
+.trust-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.trust-marks {
+  display: flex; gap: 50px; flex-wrap: wrap; align-items: center;
+}
+.trust-marks span {
+  font-family: "Newsreader", serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--muted);
+  opacity: 0.7;
+  display: flex; align-items: center; gap: 8px;
+}
+.trust-marks span::before {
+  content: "◐"; color: var(--tender); font-style: normal;
+}
+
+/* -------------------- ABOUT -------------------- */
+.about { background: var(--paper); position: relative; overflow: hidden; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 70px; align-items: center;
+}
+.about-image-wrap {
+  position: relative;
+}
+.about-image {
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  box-shadow: var(--shadow-2);
+  position: relative;
+}
+.about-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
+.about-image:hover img { transform: scale(1.05); }
+.about-stamp {
+  position: absolute;
+  bottom: -30px; right: -30px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: var(--terra);
+  color: var(--cream);
+  display: grid; place-items: center;
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  animation: spin 22s linear infinite;
+  box-shadow: var(--shadow-1);
+}
+.about-stamp svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.about-stamp svg text {
+  font-family: "Manrope", sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  fill: var(--cream);
+}
+.about-stamp-inner {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--cream);
+  z-index: 2;
+  line-height: 1;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.about-copy h2 { margin: 18px 0 30px; }
+.about-copy h2 em { font-style: italic; color: var(--terra); font-weight: 400; }
+.about-copy p {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-bottom: 18px;
+  max-width: 540px;
+}
+.about-quote {
+  margin: 36px 0;
+  padding: 24px 30px;
+  border-left: 3px solid var(--tender);
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.about-quote cite {
+  display: block;
+  font-style: normal;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+/* -------------------- PRODUCTS -------------------- */
+.products { background: var(--cream); }
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 60px;
+}
+.section-head h2 em { font-style: italic; color: var(--terra); font-weight: 400; }
+.section-head h2 .ml { color: var(--tender-deep); font-size: 0.7em; }
+.section-head .lede {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 420px;
+  justify-self: end;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.product-card {
+  background: var(--paper);
+  border-radius: 22px;
+  padding: 24px 22px 26px;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 1px solid rgba(60,40,10,0.06);
+  overflow: hidden;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-2);
+}
+.product-card[data-bg="green"] { background: oklch(0.92 0.06 145); }
+.product-card[data-bg="orange"] { background: oklch(0.9 0.08 60); }
+.product-card[data-bg="cream"] { background: var(--cream-2); }
+.product-card[data-bg="teal"] { background: oklch(0.85 0.06 200); }
+
+.product-num {
+  position: absolute;
+  top: 18px; right: 22px;
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  color: rgba(0,0,0,0.18);
+  font-size: 2rem;
+}
+.product-visual {
+  aspect-ratio: 1;
+  display: grid; place-items: center;
+  margin: 14px 0 18px;
+}
+.product-visual svg {
+  width: 70%; height: 70%;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: drop-shadow(0 20px 25px rgba(40,25,10,0.3));
+}
+.product-card:hover .product-visual svg { transform: scale(1.08) rotate(-6deg); }
+.product-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(255,255,255,0.5);
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+.product-name {
+  font-family: "Newsreader", serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.product-name em { font-style: italic; }
+.product-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+.product-foot { display: flex; align-items: center; justify-content: space-between; }
+.product-price {
+  font-family: "Newsreader", serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.product-price small { font-size: 0.7rem; color: var(--muted); font-family: "Manrope", sans-serif; }
+.product-buy {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--ink); color: var(--cream);
+  display: grid; place-items: center;
+  cursor: pointer; border: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+.product-buy:hover { background: var(--terra); transform: rotate(45deg); }
+
+/* -------------------- GALLERY (polaroid) -------------------- */
+.gallery { background: var(--paper); overflow: hidden; }
+.gallery-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+.polaroid {
+  background: var(--cream);
+  padding: 12px 12px 36px;
+  border-radius: 6px;
+  box-shadow: var(--shadow-1);
+  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+.polaroid:nth-child(odd) { transform: rotate(-2deg); }
+.polaroid:nth-child(even) { transform: rotate(1.5deg); }
+.polaroid:hover { transform: rotate(0) scale(1.04) translateY(-6px); box-shadow: var(--shadow-2); z-index: 5; }
+.polaroid-img {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--cream-2);
+}
+.polaroid-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1s ease;
+}
+.polaroid:hover .polaroid-img img { transform: scale(1.1); }
+.polaroid-cap {
+  text-align: center;
+  margin-top: 12px;
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+/* -------------------- TESTIMONIALS -------------------- */
+.testimonials {
+  background: var(--ink);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.testimonials h2 { color: var(--cream); }
+.testimonials h2 em { color: var(--terra); }
+.testimonials .kicker { color: var(--tender-pale); }
+.testimonials .kicker::before { background: var(--tender-pale); }
+.testimonials .section-head .lede { color: rgba(253, 245, 226, 0.7); }
+
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.test {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 36px 30px;
+  border-radius: 22px;
+  transition: all 0.5s ease;
+}
+.test:hover {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-6px);
+}
+.test-stars { color: var(--terra); margin-bottom: 18px; letter-spacing: 2px; }
+.test-body {
+  font-family: "Newsreader", serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  line-height: 1.45;
+  margin-bottom: 28px;
+}
+.test-author { display: flex; align-items: center; gap: 14px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.08); }
+.test-avatar {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--terra);
+  color: var(--cream);
+  display: grid; place-items: center;
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+.test-author strong { display: block; font-weight: 600; }
+.test-author span { font-size: 0.82rem; opacity: 0.6; }
+
+/* -------------------- CONTACT -------------------- */
+.contact { background: var(--cream); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 60px;
+  background: var(--paper);
+  border-radius: 28px;
+  padding: 60px;
+  box-shadow: var(--shadow-1);
+  position: relative;
+  overflow: hidden;
+}
+.contact-grid::before {
+  content: "";
+  position: absolute;
+  top: -40%; right: -10%;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(0.85 0.1 145 / 0.4), transparent 70%);
+}
+.contact-copy { position: relative; z-index: 2; }
+.contact-copy h2 { margin: 18px 0 22px; }
+.contact-copy h2 em { font-style: italic; color: var(--terra); font-weight: 400; }
+.contact-copy p { color: var(--muted); margin-bottom: 30px; max-width: 400px; font-size: 1.02rem; }
+.contact-info { display: flex; flex-direction: column; gap: 14px; margin-bottom: 30px; }
+.contact-line { display: flex; align-items: center; gap: 14px; }
+.contact-line-ico {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  background: var(--cream-2);
+  display: grid; place-items: center;
+  color: var(--terra-deep);
+  flex-shrink: 0;
+  font-size: 1.05rem;
+}
+.contact-line span { font-size: 0.95rem; color: var(--ink); }
+
+.contact-form {
+  background: var(--cream);
+  padding: 36px;
+  border-radius: 20px;
+  position: relative; z-index: 2;
+  border: 1px solid rgba(60,40,10,0.08);
+}
+.form-group { margin-bottom: 16px; }
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--paper);
+  border: 1px solid rgba(60,40,10,0.1);
+  border-radius: 12px;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--tender);
+  background: var(--cream);
+  box-shadow: 0 0 0 4px oklch(0.62 0.13 150 / 0.12);
+}
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  border-radius: 12px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.form-submit:hover { background: var(--terra); transform: translateY(-2px); }
+.form-success {
+  margin-top: 14px; padding: 12px;
+  background: oklch(0.92 0.08 145);
+  color: var(--tender-deep);
+  border-radius: 12px;
+  text-align: center; font-size: 0.9rem;
+  display: none;
+}
+.form-success.show { display: block; }
+
+/* -------------------- FOOTER -------------------- */
+.footer { background: var(--ink); color: var(--cream); padding: 80px 0 30px; }
+.footer-top {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 50px; padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand h3 {
+  color: var(--cream);
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.footer-brand h3 em { color: var(--terra); font-style: italic; }
+.footer-brand p { opacity: 0.65; max-width: 320px; font-size: 0.92rem; margin-bottom: 22px; }
+.footer-brand .ml { color: var(--tender-pale); font-size: 1.4rem; display: block; margin-bottom: 6px; }
+
+.socials { display: flex; gap: 10px; }
+.social {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  display: grid; place-items: center;
+  color: var(--cream);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.social:hover { background: var(--terra); transform: translateY(-3px); }
+
+.footer-col h4 {
+  color: var(--cream);
+  font-family: "Manrope", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.65;
+  font-size: 0.92rem;
+  transition: all 0.3s ease;
+}
+.footer-col a:hover { opacity: 1; padding-left: 6px; color: var(--terra); }
+
+.footer-credit {
+  margin-top: 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 14px;
+  font-size: 0.82rem;
+  opacity: 0.65;
+}
+.footer-credit em { color: var(--terra); font-style: italic; }
+
+/* -------------------- MUSIC TOGGLE -------------------- */
+.music-toggle {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid rgba(60,40,10,0.1);
+  box-shadow: var(--shadow-2);
+  display: grid; place-items: center;
+  cursor: pointer;
+  z-index: 90;
+  color: var(--ink);
+  transition: all 0.4s ease;
+}
+.music-toggle:hover { transform: scale(1.08); }
+.music-toggle.playing { background: var(--tender); color: var(--cream); }
+.music-toggle.playing::after {
+  content: "";
+  position: absolute; inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--tender);
+  animation: ripple 1.8s ease-out infinite;
+}
+@keyframes ripple {
+  0% { transform: scale(0.85); opacity: 1; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+
+/* -------------------- LOADER -------------------- */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--cream);
+  z-index: 9999;
+  display: grid; place-items: center;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+#loader.hide { opacity: 0; visibility: hidden; }
+.loader-coco {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, oklch(0.85 0.13 145), var(--tender-deep) 80%);
+  animation: bob 1.4s ease-in-out infinite;
+  position: relative;
+}
+.loader-coco::before {
+  content: ""; position: absolute;
+  top: -10px; left: 50%; transform: translateX(-50%);
+  width: 12px; height: 14px;
+  background: var(--tender-deep);
+  border-radius: 50% 50% 0 50%;
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.loader-txt {
+  position: absolute; bottom: 22%;
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  letter-spacing: 0.3em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+/* -------------------- FLOATING COCONUTS -------------------- */
+.floaters { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.floater { position: absolute; opacity: 0.18; animation: drift linear infinite; }
+@keyframes drift {
+  0% { transform: translate(0, 100vh) rotate(0deg); opacity: 0; }
+  10%, 90% { opacity: 0.18; }
+  100% { transform: translate(30px, -120vh) rotate(360deg); opacity: 0; }
+}
+
+/* -------------------- REVEAL -------------------- */
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal.d1 { transition-delay: 0.1s; }
+.reveal.d2 { transition-delay: 0.2s; }
+.reveal.d3 { transition-delay: 0.3s; }
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 960px) {
+  .hero-inner,
+  .about-grid,
+  .contact-grid,
+  .section-head { grid-template-columns: 1fr; gap: 40px; }
+  .section-head .lede { justify-self: start; }
+  .hero-headline .row.shift { padding-left: 0; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .test-grid { grid-template-columns: 1fr; }
+  .gallery-row { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: span 2; }
+  .contact-grid { padding: 36px 26px; }
+  .about-stamp { width: 120px; height: 120px; bottom: -20px; right: -20px; }
+  .about-stamp-inner { font-size: 1.2rem; }
+}
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 70px; left: 4%; right: 4%;
+    background: var(--cream);
+    border: 1px solid rgba(60,40,10,0.1);
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: var(--shadow-2);
+    gap: 4px;
+  }
+  .product-grid { grid-template-columns: 1fr; }
+  .gallery-row { grid-template-columns: 1fr 1fr; }
+  .trust { padding: 24px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-coco"></div>
+  <div class="loader-txt">കരിക്ക്</div>
+</div>
+
+<!-- FLOATING ELEMENTS -->
+<div class="floaters" id="floaters"></div>
+
+<!-- ANNOUNCEMENT STRIP -->
+<div class="strip">
+  <div class="strip-track">
+    <span>Hand-picked from Kerala backwaters</span>
+    <span>Zero preservatives · only sun &amp; salt</span>
+    <span>Free shipping above ₹999</span>
+    <span>കരിക്ക് · pure as the tide</span>
+    <span>72-hour farm-to-bottle promise</span>
+    <span>Hand-picked from Kerala backwaters</span>
+    <span>Zero preservatives · only sun &amp; salt</span>
+    <span>Free shipping above ₹999</span>
+    <span>കരിക്ക് · pure as the tide</span>
+    <span>72-hour farm-to-bottle promise</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark"></span>
+      Coco<em>Bliss</em>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">Story</a></li>
+      <li><a href="#products">Shop</a></li>
+      <li><a href="#gallery">Journal</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact" class="nav-cta">Order Now &rarr;</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="kicker reveal">From Kerala <span class="ml">കരിക്ക്</span> Tender Coconut</div>
+      <h1 class="hero-headline reveal d1">
+        <span class="row">
+</span>
+        <span class="row shift"><em></em></span>
+        <span class="row" style="font-size: 7px; color: rgb(18, 26, 20); line-height: 1.7"><span style="color: rgb(71, 169, 95)">തേങ്ങാവെള്ളം പോലെ തെളിഞ്ഞതാണ് മനസ്സ്</span></span>
+      </h1>
+      <div class="hero-sub reveal d2">
+        <p>Tender coconut, carried by hand from the palm-lined shores of Pathanamthitta to your glass &mdash; nothing added, nothing taken away.</p>
+      </div>
+      <div class="hero-meta reveal d3">
+        <a href="#products" class="btn btn-primary">
+          <span>Order a Crate</span>
+          <span class="btn-arrow">&rarr;</span>
+        </a>
+        <div class="hero-rating">
+          <span class="stars">★★★★★</span>
+          <span><strong>4.9</strong> from 2,300+ Keralite households</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal d2">
+      <div class="hero-disc-bg"></div>
+      <!-- Tender green coconut with bamboo straw -->
+      <svg class="hero-coconut-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="tg" cx="0.35" cy="0.3">
+            <stop offset="0%" stop-color="#a8d18d"/>
+            <stop offset="55%" stop-color="#5a8c4a"/>
+            <stop offset="100%" stop-color="#2d4f24"/>
+          </radialGradient>
+          <linearGradient id="lf" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4a7d3a"/>
+            <stop offset="100%" stop-color="#1f4a18"/>
+          </linearGradient>
+          <linearGradient id="straw" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#d4a574"/>
+            <stop offset="100%" stop-color="#8a6238"/>
+          </linearGradient>
+        </defs>
+        <!-- Coconut bulb -->
+        <path d="M200 100 Q120 100 95 200 Q85 290 140 340 Q200 370 260 340 Q315 290 305 200 Q280 100 200 100 Z" fill="url(#tg)"/>
+        <!-- Texture lines -->
+        <path d="M120 200 Q130 240 145 280 M150 170 Q155 230 160 290 M200 150 Q200 230 200 320 M250 170 Q245 230 240 290 M280 200 Q270 240 255 280" stroke="#1f4a18" stroke-width="1.5" fill="none" opacity="0.25"/>
+        <!-- Highlight -->
+        <ellipse cx="155" cy="180" rx="22" ry="40" fill="#fff" opacity="0.18"/>
+        <!-- Top stem -->
+        <path d="M180 100 Q200 80 220 100 L215 115 L185 115 Z" fill="#3d5d2a"/>
+        <!-- Cut opening -->
+        <ellipse cx="200" cy="105" rx="32" ry="8" fill="#f8f5e8"/>
+        <ellipse cx="200" cy="103" rx="28" ry="5" fill="#fbf3df"/>
+        <!-- Bamboo straw -->
+        <rect x="195" y="40" width="10" height="80" rx="3" fill="url(#straw)" transform="rotate(-12 200 80)"/>
+        <line x1="187" y1="58" x2="207" y2="62" stroke="#6b4a26" stroke-width="1.5" transform="rotate(-12 200 80)"/>
+        <line x1="187" y1="82" x2="207" y2="86" stroke="#6b4a26" stroke-width="1.5" transform="rotate(-12 200 80)"/>
+        <!-- Leaves -->
+        <path d="M200 100 Q140 50 60 60 Q120 90 200 110 Z" fill="url(#lf)"/>
+        <path d="M200 100 Q260 50 340 60 Q280 90 200 110 Z" fill="url(#lf)" opacity="0.9"/>
+        <path d="M200 100 Q180 30 200 0 Q220 30 200 110 Z" fill="url(#lf)" opacity="0.95"/>
+      </svg>
+
+      <div class="hero-label l1">From the grove this morning</div>
+      <div class="hero-label l2">Naturally sweet · No sugar added</div>
+      <div class="hero-watermark">കരിക്ക്</div>
+    </div>
+  </div>
+</header>
+
+<!-- TRUST ROW -->
+<section style="padding: 0;">
+  <div class="container">
+    <div class="trust">
+      <div class="trust-label">Featured in</div>
+      <div class="trust-marks">
+        <span>The Hindu Weekend</span>
+        <span>Vogue India</span>
+        <span>Mathrubhumi</span>
+        <span>Condé Nast Traveller</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-image-wrap reveal">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=900&q=80" alt="Coconut palms in Kerala"/>
+      </div>
+      <div class="about-stamp">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0"/>
+          </defs>
+          <text>
+            <textPath href="#circlePath">KERALA · TENDER COCONUT · SINCE THE TIDES ·</textPath>
+          </text>
+        </svg>
+        <div class="about-stamp-inner">Pure<br/>Karikku</div>
+      </div>
+    </div>
+
+    <div class="about-copy">
+      <div class="kicker reveal">Our Story <span class="ml">·  കഥ</span></div>
+      <h2 class="reveal d1">A glass of <em>Kerala,</em><br/>chilled and quiet.</h2>
+      <p class="reveal d2">Coco Bliss started on a slow Sunday in Pathanamthitta, when a glass of fresh karikku tasted like the whole afternoon. We wanted to bottle that &mdash; the morning palms, the brackish wind off the backwaters, the slow patience of trees that take twenty years to bear.</p>
+      <p class="reveal d2">Every tender coconut is climbed for, picked before noon, and pressed within hours. The shells return to the soil. The water returns to you.</p>
+
+      <blockquote class="about-quote reveal d3">
+        "There is no shortcut for tender coconut. Either you wait for the palm, or you settle for less. We choose to wait."
+        <cite>&mdash; Manoop, Founder</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker reveal">The Range <span class="ml">·  ഉൽപ്പന്നങ്ങൾ</span></div>
+        <h2 class="reveal d1">One palm,<br/><em>four pleasures.</em></h2>
+      </div>
+      <p class="lede reveal d2">A small, complete catalogue. Each is born of the same fruit &mdash; the difference is only in patience and pressure.</p>
+    </div>
+
+    <div class="product-grid">
+      <article class="product-card reveal" data-bg="green">
+        <span class="product-num">01</span>
+        <div class="product-visual">
+          <svg viewBox="0 0 100 120">
+            <rect x="32" y="22" width="36" height="88" rx="6" fill="#fbf3df" stroke="#1a1612" stroke-width="1.5"/>
+            <rect x="32" y="22" width="36" height="22" rx="6" fill="#5a8c4a"/>
+            <rect x="35" y="52" width="30" height="52" rx="2" fill="oklch(0.85 0.08 145)" opacity="0.7"/>
+            <text x="50" y="80" text-anchor="middle" font-family="serif" font-size="8" font-style="italic" fill="#1a1612">karikku</text>
+          </svg>
+        </div>
+        <span class="product-tag">Hydrate</span>
+        <h3 class="product-name">Tender <em>Water</em></h3>
+        <p class="product-desc">Cold, clean, electrolyte-rich water from young green coconuts.</p>
+        <div class="product-foot">
+          <div class="product-price">₹120 <small>/ 500ml</small></div>
+          <button class="product-buy" aria-label="Add">+</button>
+        </div>
+      </article>
+
+      <article class="product-card reveal d1" data-bg="orange">
+        <span class="product-num">02</span>
+        <div class="product-visual">
+          <svg viewBox="0 0 100 120">
+            <ellipse cx="50" cy="108" rx="32" ry="5" fill="#1a1612" opacity="0.2"/>
+            <path d="M28 36 L72 36 L70 100 Q70 110 50 110 Q30 110 30 100 Z" fill="#fbf3df" stroke="#1a1612" stroke-width="1.5"/>
+            <rect x="36" y="22" width="28" height="16" rx="2" fill="#1a1612"/>
+            <path d="M30 56 L70 56 L68 96 Q68 106 50 106 Q32 106 32 96 Z" fill="oklch(0.78 0.13 70)" opacity="0.85"/>
+            <text x="50" y="80" text-anchor="middle" font-family="serif" font-size="7" font-style="italic" fill="#1a1612">virgin oil</text>
+          </svg>
+        </div>
+        <span class="product-tag">Nourish</span>
+        <h3 class="product-name">Virgin <em>Oil</em></h3>
+        <p class="product-desc">Wood-pressed cold oil for the kitchen, the skin, the scalp.</p>
+        <div class="product-foot">
+          <div class="product-price">₹450 <small>/ 250ml</small></div>
+          <button class="product-buy" aria-label="Add">+</button>
+        </div>
+      </article>
+
+      <article class="product-card reveal d2" data-bg="cream">
+        <span class="product-num">03</span>
+        <div class="product-visual">
+          <svg viewBox="0 0 100 120">
+            <path d="M32 28 L68 28 L66 32 L66 105 Q66 110 50 110 Q34 110 34 105 L34 32 Z" fill="#fafafa" stroke="#1a1612" stroke-width="1.5"/>
+            <rect x="34" y="40" width="32" height="42" fill="#5a8c4a"/>
+            <text x="50" y="60" text-anchor="middle" fill="#fff" font-family="serif" font-size="10" font-style="italic">Bliss</text>
+            <text x="50" y="74" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="5" letter-spacing="1.5">MILK</text>
+          </svg>
+        </div>
+        <span class="product-tag">Creamy</span>
+        <h3 class="product-name">Coconut <em>Milk</em></h3>
+        <p class="product-desc">Silken milk for sadya, curries, coffee, and slow weekend breakfasts.</p>
+        <div class="product-foot">
+          <div class="product-price">₹180 <small>/ 1L</small></div>
+          <button class="product-buy" aria-label="Add">+</button>
+        </div>
+      </article>
+
+      <article class="product-card reveal d3" data-bg="teal">
+        <span class="product-num">04</span>
+        <div class="product-visual">
+          <svg viewBox="0 0 100 120">
+            <path d="M22 40 Q22 32 30 32 L70 32 Q78 32 78 40 L75 100 Q75 108 65 108 L35 108 Q25 108 25 100 Z" fill="oklch(0.45 0.1 200)" stroke="#1a1612" stroke-width="1.5"/>
+            <rect x="32" y="48" width="36" height="44" fill="#fbf3df"/>
+            <circle cx="42" cy="62" r="3" fill="#8a6238"/>
+            <circle cx="55" cy="70" r="2.5" fill="#8a6238"/>
+            <circle cx="48" cy="80" r="3" fill="#8a6238"/>
+            <text x="50" y="42" text-anchor="middle" fill="#fbf3df" font-family="serif" font-size="6" font-style="italic">Crunch</text>
+          </svg>
+        </div>
+        <span class="product-tag">Crunch</span>
+        <h3 class="product-name">Toasted <em>Chips</em></h3>
+        <p class="product-desc">Sun-toasted slivers with a whisper of sea-salt &mdash; for the long evenings.</p>
+        <div class="product-foot">
+          <div class="product-price">₹220 <small>/ 80g</small></div>
+          <button class="product-buy" aria-label="Add">+</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker reveal">From the Grove <span class="ml">·  നോട്ടങ്ങൾ</span></div>
+        <h2 class="reveal d1">Postcards <em>home.</em></h2>
+      </div>
+      <p class="lede reveal d2">Snapshots from the palms, the backwaters, and the slow mornings between.</p>
+    </div>
+
+    <div class="gallery-row">
+      <div class="polaroid reveal">
+        <div class="polaroid-img"><img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600&q=80" alt="Palms"/></div>
+        <div class="polaroid-cap">The grove at dawn</div>
+      </div>
+      <div class="polaroid reveal d1">
+        <div class="polaroid-img"><img src="https://images.unsplash.com/photo-1437846972679-9e6e537be46e?w=600&q=80" alt="Coconut"/></div>
+        <div class="polaroid-cap">Sand &amp; salt</div>
+      </div>
+      <div class="polaroid reveal d2">
+        <div class="polaroid-img"><img src="https://images.unsplash.com/photo-1580984969071-a8da5656c2fb?w=600&q=80" alt="Half coconut"/></div>
+        <div class="polaroid-cap">Hand-cut, fresh</div>
+      </div>
+      <div class="polaroid reveal d1">
+        <div class="polaroid-img"><img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&q=80" alt="Sunset"/></div>
+        <div class="polaroid-cap">Golden hour</div>
+      </div>
+      <div class="polaroid reveal d2">
+        <div class="polaroid-img"><img src="https://images.unsplash.com/photo-1481277542470-605612bd2d61?w=600&q=80" alt="Drink"/></div>
+        <div class="polaroid-cap">Served cold</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker reveal">Kind Words <span class="ml">·  സ്നേഹം</span></div>
+        <h2 class="reveal d1">From the <em>thirsty</em><br/>and the thankful.</h2>
+      </div>
+      <p class="lede reveal d2">A small selection of letters from the people who keep coming back.</p>
+    </div>
+
+    <div class="test-grid">
+      <article class="test reveal">
+        <div class="test-stars">★ ★ ★ ★ ★</div>
+        <p class="test-body">"It tastes like the karikku my grandmother used to cut down for us in the courtyard. I cried a little, honestly. Thank you."</p>
+        <div class="test-author">
+          <div class="test-avatar">A</div>
+          <div>
+            <strong>Anjali Menon</strong>
+            <span>Architect · Kochi</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="test reveal d1">
+        <div class="test-stars">★ ★ ★ ★ ★</div>
+        <p class="test-body">"The wood-pressed oil is something else entirely. My amma in Thrissur agreed &mdash; and she does not agree easily."</p>
+        <div class="test-author">
+          <div class="test-avatar">R</div>
+          <div>
+            <strong>Rohit Pillai</strong>
+            <span>Chef · Bengaluru</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="test reveal d2">
+        <div class="test-stars">★ ★ ★ ★ ★</div>
+        <p class="test-body">"I order a monthly crate. The packaging is beautiful, the water is colder than I expect, and the chips never make it to lunch."</p>
+        <div class="test-author">
+          <div class="test-avatar">S</div>
+          <div>
+            <strong>Sara Kuruvilla</strong>
+            <span>Writer · Mumbai</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid reveal">
+      <div class="contact-copy">
+        <div class="kicker">Get in Touch <span class="ml">·  ബന്ധപ്പെടാം</span></div>
+        <h2>Drop us a <em>line.</em></h2>
+        <p>Whether you're after a single crate or a wholesale partnership for your café &mdash; we reply within a working day. Usually before the next harvest.</p>
+        <div class="contact-info">
+          <div class="contact-line">
+            <div class="contact-line-ico">✉</div>
+            <span>manooppta@gmail.com</span>
+          </div>
+          <div class="contact-line">
+            <div class="contact-line-ico">☎</div>
+            <span>+91 7558817250</span>
+          </div>
+          <div class="contact-line">
+            <div class="contact-line-ico">⚑</div>
+            <span>Pathanamthitta, Kerala</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" required placeholder="As your mother calls you"/>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required placeholder="you@example.com"/>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" required placeholder="Tell us what you'd like..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send &rarr;</button>
+        <div class="form-success" id="formSuccess">Thank you. We'll write back soon. ✦</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="ml">കരിക്ക്</span>
+        <h3><span class="brand-mark"></span> Coco<em>Bliss</em></h3>
+        <p>Tender coconut goods, hand-carried from the palms of Pathanamthitta. Made slowly. Shared widely.</p>
+        <div class="socials">
+          <a href="#" class="social" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" class="social" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7a1 1 0 011-1h2V3h-3a4 4 0 00-4 4v2H8v3h2v8h3v-8h3l1-3z"/></svg></a>
+          <a href="#" class="social" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 8a3 3 0 00-2.1-2.1C18.2 5.5 12 5.5 12 5.5s-6.2 0-7.9.4A3 3 0 002 8c-.4 1.7-.4 4-.4 4s0 2.3.4 4a3 3 0 002.1 2.1c1.7.4 7.9.4 7.9.4s6.2 0 7.9-.4A3 3 0 0022 16c.4-1.7.4-4 .4-4s0-2.3-.4-4zM10 15V9l5 3-5 3z"/></svg></a>
+          <a href="#" class="social" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4A10 10 0 003.4 17.2L2 22l4.8-1.3A10 10 0 1020 4zm-8 18a8 8 0 01-4-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1112 22zm4.5-6c-.2 0-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.7-.4-1.5-.9-2.1-1.5-.5-.5-.9-1.1-1.2-1.8 0-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.3-.4 0-.1 0-.3-.1-.4-.1-.1-.5-1.2-.7-1.6-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-1.1 1.6-1 2.5.1 1.1.6 2.1 1.3 2.9 1.3 1.6 3 2.8 5 3.4.4.1.7.1 1 .1.5 0 1-.2 1.5-.4.5-.3.9-.7 1-1.2.1-.2.2-.6.1-.7-.1-.1-.2-.2-.4-.3z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#products">Tender Water</a></li>
+          <li><a href="#products">Virgin Oil</a></li>
+          <li><a href="#products">Coconut Milk</a></li>
+          <li><a href="#products">Toasted Chips</a></li>
+          <li><a href="#products">Gift Crates</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Brand</h4>
+        <ul>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#about">Sourcing</a></li>
+          <li><a href="#gallery">Journal</a></li>
+          <li><a href="#testimonials">Press</a></li>
+          <li><a href="#contact">Wholesale</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:manooppta@gmail.com">manooppta@gmail.com</a></li>
+          <li><a href="tel:+917558817250">+91 7558817250</a></li>
+          <li><a href="#">Pathanamthitta, Kerala</a></li>
+          <li><a href="#contact">Get in Touch</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-credit">
+      <span>&copy; 2026 Coco Bliss · Licensed by <em>Akumenbyq</em> · Manoop · Pathanamthitta · manooppta@gmail.com · +91 7558817250</span>
+      <span>
+</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MUSIC TOGGLE -->
+<button class="music-toggle" id="musicToggle" aria-label="Toggle ambient sound">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M9 18V6l11-2v12" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <circle cx="6" cy="18" r="3"/>
+    <circle cx="17" cy="16" r="3"/>
+  </svg>
+</button>
+
+<script>
+/* Loader */
+window.addEventListener("load", () => {
+  setTimeout(() => document.getElementById("loader").classList.add("hide"), 900);
+});
+
+/* Nav scroll */
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => nav.classList.toggle("scrolled", window.scrollY > 30));
+
+/* Mobile nav */
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
+navToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
+navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
+
+/* Reveal */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* Form */
+const form = document.getElementById("contactForm");
+const success = document.getElementById("formSuccess");
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  success.classList.add("show");
+  form.reset();
+  setTimeout(() => success.classList.remove("show"), 4000);
+});
+
+/* Floating coconuts */
+const floaters = document.getElementById("floaters");
+const cocoSVG = `<svg viewBox="0 0 50 50"><circle cx="25" cy="28" r="18" fill="oklch(0.55 0.13 145)"/><path d="M25 12 Q15 6 8 10 Q18 14 25 18 Z" fill="oklch(0.42 0.11 150)"/><path d="M25 12 Q35 6 42 10 Q32 14 25 18 Z" fill="oklch(0.42 0.11 150)" opacity="0.85"/></svg>`;
+for (let i = 0; i < 5; i++) {
+  const f = document.createElement("div");
+  f.className = "floater";
+  const s = 30 + Math.random() * 40;
+  f.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}vw;animation-duration:${20+Math.random()*18}s;animation-delay:${Math.random()*-20}s;`;
+  f.innerHTML = cocoSVG;
+  floaters.appendChild(f);
+}
+
+/* Ambient audio (WebAudio synth — no external file) */
+const musicBtn = document.getElementById("musicToggle");
+let ctx = null, nodes = [];
+function startAmbient() {
+  ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const master = ctx.createGain();
+  master.gain.value = 0;
+  master.gain.linearRampToValueAtTime(0.07, ctx.currentTime + 1.5);
+  master.connect(ctx.destination);
+  [220, 277.18, 329.63].forEach((f, i) => {
+    const o = ctx.createOscillator(); o.type = "sine"; o.frequency.value = f;
+    const g = ctx.createGain(); g.gain.value = 0.25;
+    const lfo = ctx.createOscillator(); lfo.frequency.value = 0.08 + i * 0.04;
+    const lg = ctx.createGain(); lg.gain.value = 0.12;
+    lfo.connect(lg).connect(g.gain); o.connect(g).connect(master);
+    o.start(); lfo.start();
+    nodes.push(o, lfo);
+  });
+  // Wave noise
+  const buf = ctx.createBuffer(1, 2 * ctx.sampleRate, ctx.sampleRate);
+  const d = buf.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = (Math.random()*2-1) * 0.3;
+  const noise = ctx.createBufferSource(); noise.buffer = buf; noise.loop = true;
+  const filt = ctx.createBiquadFilter(); filt.type = "lowpass"; filt.frequency.value = 350;
+  const ng = ctx.createGain(); ng.gain.value = 0.4;
+  const nlfo = ctx.createOscillator(); nlfo.frequency.value = 0.12;
+  const nlg = ctx.createGain(); nlg.gain.value = 0.25;
+  nlfo.connect(nlg).connect(ng.gain);
+  noise.connect(filt).connect(ng).connect(master);
+  noise.start(); nlfo.start();
+  nodes.push(noise, nlfo);
+}
+function stopAmbient() {
+  if (!ctx) return;
+  nodes.forEach(n => { try { n.stop(); } catch(e){} });
+  nodes = []; ctx.close(); ctx = null;
+}
+musicBtn.addEventListener("click", () => {
+  const p = musicBtn.classList.toggle("playing");
+  if (p) startAmbient(); else stopAmbient();
+});
+</script>
+</body>
+</html>
+
+<style id="__om-edit-overrides">
+#home :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >span { line-height: 1.92 !important }
+#home :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >span { line-height: 0.92 !important }
+#home :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >span { line-height: 1.92 !important }
+#home :is(h1,h2,h3,h4,h5,h6) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >span { line-height: 1 !important }
+</style>

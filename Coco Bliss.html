@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coco Bliss — Pure Tropical Coconut</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   COCO BLISS — Premium Tropical Coconut Brand
+   Single-file build · HTML5 + CSS + Vanilla JS
+============================================================ */
+
+/* -------------------- TOKENS -------------------- */
+:root {
+  --coconut: #faf6ef;
+  --coconut-2: #f3ece0;
+  --sand: #e8d9c0;
+  --sand-2: #d9c4a4;
+  --palm: oklch(0.42 0.09 155);
+  --palm-deep: oklch(0.32 0.07 155);
+  --palm-soft: oklch(0.78 0.06 155);
+  --ocean: oklch(0.48 0.09 215);
+  --ocean-deep: oklch(0.32 0.08 230);
+  --lagoon: oklch(0.78 0.07 200);
+  --shell: oklch(0.32 0.05 50);
+  --shell-soft: oklch(0.55 0.07 55);
+  --ink: #1d1a14;
+  --muted: #6b6358;
+
+  --radius-sm: 14px;
+  --radius: 22px;
+  --radius-lg: 34px;
+
+  --shadow-soft: 0 12px 40px -18px rgba(40, 30, 20, 0.25);
+  --shadow-card: 0 30px 60px -30px rgba(20, 40, 30, 0.35);
+  --shadow-float: 0 40px 80px -40px rgba(20, 30, 40, 0.45);
+
+  --grad-tropical: linear-gradient(135deg, var(--palm) 0%, var(--ocean) 100%);
+  --grad-sunset: linear-gradient(135deg, oklch(0.78 0.12 60) 0%, oklch(0.65 0.14 25) 100%);
+  --grad-sand: linear-gradient(180deg, var(--coconut) 0%, var(--sand) 100%);
+
+  --glass: rgba(250, 246, 239, 0.55);
+  --glass-stroke: rgba(255, 255, 255, 0.6);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--coconut);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--shell);
+}
+h1 { font-size: clamp(2.8rem, 7vw, 5.6rem); }
+h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); }
+
+.eyebrow {
+  font-family: "Jost", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--palm);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px; height: 1px;
+  background: var(--palm);
+  display: inline-block;
+}
+
+.container {
+  width: min(1240px, 92%);
+  margin-inline: auto;
+}
+
+section { padding: clamp(80px, 10vw, 140px) 0; position: relative; }
+
+/* -------------------- LOADER -------------------- */
+#loader {
+  position: fixed; inset: 0;
+  background: var(--coconut);
+  z-index: 9999;
+  display: grid; place-items: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#loader.hide { opacity: 0; visibility: hidden; }
+.loader-coconut {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 32%, oklch(0.55 0.08 55) 0%, oklch(0.35 0.06 50) 60%, oklch(0.22 0.04 45) 100%);
+  position: relative;
+  animation: bob 1.4s ease-in-out infinite;
+  box-shadow: inset -10px -10px 24px rgba(0,0,0,0.35), 0 30px 40px -20px rgba(40,25,10,0.4);
+}
+.loader-coconut::after {
+  content: ""; position: absolute; inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 65% 65%, transparent 55%, rgba(0,0,0,0.25) 100%);
+}
+.loader-leaf {
+  position: absolute; top: -22px; left: 50%;
+  transform: translateX(-50%) rotate(-12deg);
+  width: 80px; height: 30px;
+  background: linear-gradient(90deg, var(--palm) 0%, var(--palm-deep) 100%);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  animation: sway 1.4s ease-in-out infinite;
+}
+.loader-text {
+  position: absolute; bottom: 18%;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem; letter-spacing: 0.3em;
+  color: var(--shell);
+  text-transform: uppercase;
+}
+.loader-text span { display: inline-block; animation: pulseLetter 1.6s ease-in-out infinite; }
+.loader-text span:nth-child(2) { animation-delay: 0.1s; }
+.loader-text span:nth-child(3) { animation-delay: 0.2s; }
+.loader-text span:nth-child(4) { animation-delay: 0.3s; }
+.loader-text span:nth-child(5) { animation-delay: 0.4s; }
+.loader-text span:nth-child(6) { animation-delay: 0.5s; }
+.loader-text span:nth-child(7) { animation-delay: 0.6s; }
+.loader-text span:nth-child(8) { animation-delay: 0.7s; }
+.loader-text span:nth-child(9) { animation-delay: 0.8s; }
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+@keyframes sway {
+  0%, 100% { transform: translateX(-50%) rotate(-15deg); }
+  50% { transform: translateX(-50%) rotate(15deg); }
+}
+@keyframes pulseLetter {
+  0%, 100% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* -------------------- NAVIGATION -------------------- */
+.nav {
+  position: fixed;
+  top: 18px; left: 50%;
+  transform: translateX(-50%);
+  width: min(1200px, 94%);
+  z-index: 100;
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid var(--glass-stroke);
+  border-radius: 100px;
+  padding: 12px 26px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: var(--shadow-soft);
+  transition: top 0.4s ease, padding 0.3s ease;
+}
+.nav.scrolled {
+  padding: 10px 22px;
+  background: rgba(250, 246, 239, 0.85);
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--shell);
+  text-decoration: none;
+}
+.brand-mark {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--shell-soft), var(--shell) 70%);
+  position: relative;
+  box-shadow: inset -4px -4px 8px rgba(0,0,0,0.3);
+}
+.brand-mark::before {
+  content: ""; position: absolute;
+  top: -8px; left: 50%; transform: translateX(-50%) rotate(-15deg);
+  width: 22px; height: 8px;
+  background: var(--palm);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.brand em {
+  font-style: italic;
+  color: var(--palm);
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex; gap: 6px; list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.92rem;
+  padding: 8px 16px;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.nav-links a:hover {
+  background: rgba(255,255,255,0.5);
+  color: var(--palm-deep);
+}
+.btn-nav {
+  background: var(--shell);
+  color: var(--coconut) !important;
+  padding: 10px 22px !important;
+  border-radius: 100px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.btn-nav:hover { background: var(--palm-deep) !important; color: var(--coconut) !important; transform: translateY(-2px); }
+
+.nav-toggle {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  width: 36px; height: 36px;
+  flex-direction: column; gap: 5px;
+  align-items: center; justify-content: center;
+}
+.nav-toggle span {
+  width: 22px; height: 2px;
+  background: var(--shell);
+  transition: all 0.3s ease;
+}
+
+/* -------------------- HERO -------------------- */
+.hero {
+  min-height: 100vh;
+  padding-top: 130px;
+  background:
+    radial-gradient(1200px 600px at 80% 10%, oklch(0.85 0.06 200 / 0.6), transparent 60%),
+    radial-gradient(800px 500px at 10% 90%, oklch(0.88 0.05 90 / 0.7), transparent 60%),
+    linear-gradient(180deg, oklch(0.92 0.04 200) 0%, var(--coconut) 60%, var(--sand) 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image:
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+.hero-grid {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 60px;
+}
+.hero-copy h1 { margin: 20px 0 24px; }
+.hero-copy h1 em {
+  font-style: italic;
+  color: var(--palm);
+  font-weight: 400;
+}
+.hero-copy p {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 30px;
+  border-radius: 100px;
+  font-family: "Jost", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary {
+  background: var(--shell);
+  color: var(--coconut);
+  box-shadow: 0 20px 40px -20px rgba(60,40,20,0.6);
+}
+.btn-primary::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--grad-tropical);
+  opacity: 0; transition: opacity 0.4s ease;
+  z-index: 0;
+}
+.btn-primary > * { position: relative; z-index: 1; }
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 50px -20px rgba(20,80,60,0.6);
+}
+.btn-primary:hover::after { opacity: 1; }
+.btn-arrow {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--coconut);
+  color: var(--shell);
+  display: grid; place-items: center;
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+.btn-primary:hover .btn-arrow { transform: translateX(4px); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--shell);
+  border: 1px solid var(--shell);
+}
+.btn-ghost:hover { background: var(--shell); color: var(--coconut); }
+
+.hero-stats {
+  margin-top: 48px;
+  display: flex; gap: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(60,40,20,0.15);
+}
+.hero-stats div strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  color: var(--palm-deep);
+  display: block;
+  line-height: 1;
+}
+.hero-stats div span {
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Hero coconut visual */
+.hero-visual {
+  position: relative;
+  height: 560px;
+  display: grid; place-items: center;
+}
+.hero-disc {
+  width: 460px; height: 460px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, oklch(0.9 0.05 200) 0%, oklch(0.7 0.08 210) 60%, oklch(0.45 0.1 220) 100%);
+  position: relative;
+  box-shadow: 0 60px 90px -40px rgba(20,60,80,0.6), inset 0 0 80px rgba(255,255,255,0.2);
+  animation: floatSlow 6s ease-in-out infinite;
+}
+.hero-disc::before {
+  content: ""; position: absolute;
+  inset: 30px; border-radius: 50%;
+  border: 1px dashed rgba(255,255,255,0.35);
+}
+.hero-coconut {
+  position: absolute;
+  width: 320px; height: 320px;
+  animation: floatSlow 6s ease-in-out infinite;
+}
+.hero-coconut svg { width: 100%; height: 100%; filter: drop-shadow(0 30px 40px rgba(40,25,10,0.4)); }
+
+.hero-tag {
+  position: absolute;
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-stroke);
+  padding: 10px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  color: var(--shell);
+  display: flex; align-items: center; gap: 8px;
+  box-shadow: var(--shadow-soft);
+  animation: floatTag 4s ease-in-out infinite;
+}
+.hero-tag .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--palm); }
+.hero-tag.t1 { top: 8%; right: 6%; }
+.hero-tag.t2 { bottom: 16%; left: 4%; animation-delay: 1s; }
+.hero-tag.t3 { top: 50%; right: -2%; animation-delay: 2s; }
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-18px) rotate(2deg); }
+}
+@keyframes floatTag {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Wave divider */
+.wave-divider {
+  position: absolute; bottom: -1px; left: 0; right: 0;
+  width: 100%; height: 100px;
+  z-index: 1;
+  line-height: 0;
+}
+.wave-divider svg {
+  width: 100%; height: 100%;
+  display: block;
+}
+.wave-anim {
+  animation: waveSlide 12s linear infinite;
+}
+@keyframes waveSlide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* -------------------- FLOATING COCONUTS -------------------- */
+.floaters {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.floater {
+  position: absolute;
+  opacity: 0.35;
+  animation: drift linear infinite;
+}
+.floater svg { width: 100%; height: 100%; }
+@keyframes drift {
+  0% { transform: translate(0, 100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.35; }
+  90% { opacity: 0.35; }
+  100% { transform: translate(40px, -120vh) rotate(360deg); opacity: 0; }
+}
+
+/* -------------------- ABOUT -------------------- */
+.about {
+  background: var(--coconut);
+  position: relative;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-image {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  box-shadow: var(--shadow-card);
+}
+.about-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.2s ease;
+}
+.about-image:hover img { transform: scale(1.06); }
+.about-image::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(20,40,30,0.4) 100%);
+}
+.about-badge {
+  position: absolute;
+  bottom: 24px; left: 24px; right: 24px;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-stroke);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: flex; align-items: center; gap: 16px;
+}
+.about-badge-icon {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: var(--grad-tropical);
+  display: grid; place-items: center;
+  color: var(--coconut);
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.about-badge-text strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+  color: var(--shell);
+  display: block;
+  line-height: 1.1;
+}
+.about-badge-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.about-badge-text span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.about-copy h2 { margin: 18px 0 24px; }
+.about-copy h2 em { font-style: italic; color: var(--palm); font-weight: 400; }
+.about-copy p {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin-bottom: 18px;
+  max-width: 540px;
+}
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 32px 0;
+}
+.about-feat {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 16px;
+  background: var(--coconut-2);
+  border-radius: var(--radius-sm);
+}
+.about-feat-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--palm);
+  color: var(--coconut);
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+.about-feat strong {
+  display: block;
+  color: var(--shell);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.about-feat span {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* -------------------- PRODUCTS -------------------- */
+.products {
+  background: linear-gradient(180deg, var(--coconut) 0%, var(--coconut-2) 100%);
+}
+.section-head {
+  text-align: center;
+  margin-bottom: 70px;
+  max-width: 680px;
+  margin-inline: auto;
+}
+.section-head h2 { margin: 16px 0 18px; }
+.section-head h2 em { font-style: italic; color: var(--palm); font-weight: 400; }
+.section-head p {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.product-card {
+  background: var(--coconut);
+  border-radius: var(--radius);
+  padding: 28px 24px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  border: 1px solid rgba(60,40,20,0.06);
+}
+.product-card::before {
+  content: ""; position: absolute;
+  inset: 0;
+  background: var(--grad-tropical);
+  opacity: 0; transition: opacity 0.5s ease;
+  z-index: 0;
+}
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-float);
+}
+.product-card:hover::before { opacity: 1; }
+.product-card:hover .product-name,
+.product-card:hover .product-desc,
+.product-card:hover .product-price,
+.product-card:hover .product-tag { color: var(--coconut); }
+.product-card:hover .product-tag { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.3); }
+.product-card:hover .product-buy { background: var(--coconut); color: var(--shell); }
+
+.product-card > * { position: relative; z-index: 1; transition: color 0.5s ease; }
+
+.product-visual {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  margin-bottom: 22px;
+  display: grid; place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.product-visual.v1 { background: linear-gradient(135deg, oklch(0.92 0.04 200), oklch(0.78 0.07 210)); }
+.product-visual.v2 { background: linear-gradient(135deg, oklch(0.92 0.05 90), oklch(0.82 0.08 80)); }
+.product-visual.v3 { background: linear-gradient(135deg, oklch(0.96 0.02 100), oklch(0.88 0.04 80)); }
+.product-visual.v4 { background: linear-gradient(135deg, oklch(0.88 0.06 50), oklch(0.72 0.09 40)); }
+.product-visual svg {
+  width: 65%; height: 65%;
+  filter: drop-shadow(0 20px 25px rgba(40,25,10,0.3));
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.product-card:hover .product-visual svg { transform: scale(1.1) rotate(-8deg); }
+
+.product-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid rgba(60,40,20,0.2);
+  border-radius: 100px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.product-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  color: var(--shell);
+  margin-bottom: 6px;
+}
+.product-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+.product-foot {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.product-price {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  color: var(--shell);
+}
+.product-price small { font-size: 0.7rem; color: var(--muted); font-family: "Jost", sans-serif; }
+.product-buy {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--shell);
+  color: var(--coconut);
+  display: grid; place-items: center;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+/* -------------------- GALLERY -------------------- */
+.gallery {
+  background: var(--coconut);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 240px 240px;
+  gap: 16px;
+}
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+}
+.gallery-item::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(20,40,30,0.65) 100%);
+  opacity: 0; transition: opacity 0.5s ease;
+}
+.gallery-item:hover::after { opacity: 1; }
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.gallery-item:hover img { transform: scale(1.12); }
+.gallery-caption {
+  position: absolute;
+  bottom: 20px; left: 24px;
+  z-index: 2;
+  color: var(--coconut);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.4rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+}
+.gallery-caption span {
+  display: block;
+  font-family: "Jost", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+.gallery-item:hover .gallery-caption { opacity: 1; transform: translateY(0); }
+
+.gallery-item.g1 { grid-column: span 2; grid-row: span 2; }
+.gallery-item.g2 { grid-column: span 2; }
+.gallery-item.g3 { grid-column: span 2; }
+.gallery-item.g4 { grid-column: span 2; }
+.gallery-item.g5 { grid-column: span 2; }
+
+/* -------------------- TESTIMONIALS -------------------- */
+.testimonials {
+  background: linear-gradient(180deg, var(--coconut) 0%, oklch(0.93 0.03 90) 100%);
+  position: relative;
+}
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.test-card {
+  background: var(--coconut);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  transition: all 0.5s ease;
+  border: 1px solid rgba(60,40,20,0.06);
+}
+.test-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card);
+}
+.test-quote {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 4rem;
+  color: var(--palm);
+  line-height: 0.6;
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+.test-stars {
+  display: flex; gap: 3px;
+  color: oklch(0.78 0.14 80);
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+.test-body {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+.test-author {
+  display: flex; align-items: center; gap: 14px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(60,40,20,0.1);
+}
+.test-avatar {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: var(--grad-tropical);
+  color: var(--coconut);
+  display: grid; place-items: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.test-author strong {
+  display: block; color: var(--shell);
+  font-weight: 500;
+}
+.test-author span {
+  font-size: 0.82rem; color: var(--muted);
+}
+
+/* -------------------- CONTACT -------------------- */
+.contact {
+  background: var(--coconut);
+  position: relative;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 60px;
+  align-items: center;
+  background: linear-gradient(135deg, oklch(0.32 0.07 155), oklch(0.28 0.08 200));
+  border-radius: var(--radius-lg);
+  padding: 70px 64px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.contact-grid::before {
+  content: ""; position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+}
+.contact-grid::after {
+  content: ""; position: absolute;
+  bottom: -120px; left: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
+}
+.contact-copy { position: relative; z-index: 2; color: var(--coconut); }
+.contact-copy .eyebrow { color: var(--palm-soft); }
+.contact-copy .eyebrow::before { background: var(--palm-soft); }
+.contact-copy h2 { color: var(--coconut); margin: 16px 0 18px; }
+.contact-copy h2 em { font-style: italic; color: var(--lagoon); font-weight: 400; }
+.contact-copy p {
+  opacity: 0.8;
+  margin-bottom: 32px;
+  max-width: 380px;
+}
+.contact-info { display: flex; flex-direction: column; gap: 16px; }
+.contact-line { display: flex; align-items: center; gap: 14px; }
+.contact-line-ico {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.contact-line span { font-size: 0.95rem; opacity: 0.9; }
+
+.contact-form {
+  position: relative; z-index: 2;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-stroke);
+  padding: 36px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+.form-group { margin-bottom: 18px; }
+.form-group label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--shell);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(60,40,20,0.1);
+  border-radius: var(--radius-sm);
+  font-family: "Jost", sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--palm);
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 0 0 4px oklch(0.42 0.09 155 / 0.1);
+}
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--shell);
+  color: var(--coconut);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: "Jost", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.form-submit::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--grad-tropical);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.form-submit span { position: relative; z-index: 1; }
+.form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 30px -10px rgba(20,80,60,0.4);
+}
+.form-submit:hover::before { opacity: 1; }
+.form-success {
+  margin-top: 14px;
+  padding: 12px;
+  background: oklch(0.92 0.06 150);
+  color: var(--palm-deep);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: 0.9rem;
+  display: none;
+}
+.form-success.show { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -------------------- FOOTER -------------------- */
+.footer {
+  background: var(--shell);
+  color: var(--coconut);
+  padding: 80px 0 30px;
+  position: relative;
+  overflow: hidden;
+}
+.footer-wave {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  transform: translateY(-99%);
+  line-height: 0;
+}
+.footer-wave svg { width: 100%; height: 100%; display: block; }
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-brand h3 {
+  color: var(--coconut);
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.footer-brand h3 em { color: var(--palm-soft); font-style: italic; font-weight: 400; }
+.footer-brand p {
+  opacity: 0.7;
+  max-width: 320px;
+  margin-bottom: 24px;
+  font-size: 0.92rem;
+}
+.socials { display: flex; gap: 10px; }
+.social {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: grid; place-items: center;
+  color: var(--coconut);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.social:hover {
+  background: var(--palm);
+  transform: translateY(-3px);
+  border-color: var(--palm);
+}
+.footer-col h4 {
+  color: var(--coconut);
+  font-family: "Jost", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  color: var(--coconut);
+  text-decoration: none;
+  opacity: 0.7;
+  font-size: 0.92rem;
+  transition: opacity 0.3s ease, padding-left 0.3s ease;
+}
+.footer-col a:hover { opacity: 1; padding-left: 6px; color: var(--palm-soft); }
+
+.footer-bot {
+  padding-top: 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+.footer-bot span em { color: var(--palm-soft); font-style: italic; }
+
+/* -------------------- MUSIC TOGGLE -------------------- */
+.music-toggle {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-stroke);
+  display: grid; place-items: center;
+  cursor: pointer;
+  z-index: 90;
+  box-shadow: var(--shadow-card);
+  color: var(--shell);
+  transition: all 0.4s ease;
+}
+.music-toggle:hover { transform: scale(1.08); background: var(--coconut); }
+.music-toggle.playing {
+  background: var(--palm);
+  color: var(--coconut);
+  border-color: var(--palm);
+}
+.music-toggle.playing::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--palm);
+  animation: ripple 1.8s ease-out infinite;
+}
+@keyframes ripple {
+  0% { transform: scale(0.85); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+.music-tooltip {
+  position: absolute;
+  right: 70px;
+  background: var(--shell);
+  color: var(--coconut);
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(8px);
+  transition: all 0.3s ease;
+}
+.music-toggle:hover .music-tooltip { opacity: 1; transform: translateX(0); }
+
+/* -------------------- SCROLL REVEAL -------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal.d1 { transition-delay: 0.1s; }
+.reveal.d2 { transition-delay: 0.2s; }
+.reveal.d3 { transition-delay: 0.3s; }
+.reveal.d4 { transition-delay: 0.4s; }
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width: 980px) {
+  .hero-grid,
+  .about-grid,
+  .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+  .hero-visual { height: 420px; }
+  .hero-disc { width: 360px; height: 360px; }
+  .hero-coconut { width: 250px; height: 250px; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonial-grid { grid-template-columns: 1fr; }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 200px);
+  }
+  .gallery-item.g1 { grid-column: span 2; grid-row: span 1; }
+  .gallery-item.g2,
+  .gallery-item.g3,
+  .gallery-item.g4,
+  .gallery-item.g5 { grid-column: span 1; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: span 2; }
+  .contact-grid { padding: 40px 28px; }
+  .about-features { grid-template-columns: 1fr; }
+}
+@media (max-width: 720px) {
+  .nav { padding: 10px 14px; }
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute;
+    top: 70px; left: 0; right: 0;
+    background: var(--coconut);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow-card);
+    gap: 4px;
+  }
+  .product-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-wrap: wrap; gap: 22px; }
+  .hero-tag.t3 { display: none; }
+  h1 { font-size: 2.6rem; }
+  .contact-grid { padding: 32px 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     LOADER  ·  animated coconut
+========================================================== -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-coconut">
+    <div class="loader-leaf"></div>
+  </div>
+  <div class="loader-text">
+    <span>C</span><span>O</span><span>C</span><span>O</span>&nbsp;<span>B</span><span>L</span><span>I</span><span>S</span><span>S</span>
+  </div>
+</div>
+
+<!-- =========================================================
+     FLOATING COCONUTS  ·  background ambient layer
+========================================================== -->
+<div class="floaters" aria-hidden="true" id="floaters"></div>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================== -->
+<nav class="nav" id="nav">
+  <a href="#home" class="brand">
+    <span class="brand-mark"></span>
+    Coco<em>Bliss</em>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="btn-nav">Get in Touch</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- =========================================================
+     HERO  ·  Catchy headline + coconut visual
+========================================================== -->
+<header class="hero" id="home">
+  <div class="hero-bg"></div>
+
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">Akumenbyq &mdash; Tropical Goods</span>
+      <h1 class="reveal d1">Pure coconut,<br/>pure <em>bliss.</em></h1>
+      <p class="reveal d2">From hand-picked groves on sun-warmed coasts to your kitchen counter &mdash; an organic, single-origin coconut brand crafted with the patience of the tides.</p>
+      <div class="cta-row reveal d3">
+        <a href="#products" class="btn btn-primary">
+          <span>Shop the Collection</span>
+          <span class="btn-arrow">&rarr;</span>
+        </a>
+        <a href="#about" class="btn btn-ghost">Our Story</a>
+      </div>
+      <div class="hero-stats reveal d4">
+        <div><strong>100%</strong><span>Organic</span></div>
+        <div><strong>27+</strong><span>Coastal Groves</span></div>
+        <div><strong>4.9</strong><span>Customer Rating</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal d2">
+      <div class="hero-disc"></div>
+      <div class="hero-coconut">
+        <!-- Stylised coconut drink illustration -->
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="coco" cx="0.35" cy="0.35">
+              <stop offset="0%" stop-color="#8b6a4a"/>
+              <stop offset="60%" stop-color="#5a4128"/>
+              <stop offset="100%" stop-color="#3a2814"/>
+            </radialGradient>
+            <radialGradient id="cocoTop" cx="0.5" cy="0.5">
+              <stop offset="0%" stop-color="#f8f5ed"/>
+              <stop offset="100%" stop-color="#d8cdb5"/>
+            </radialGradient>
+            <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3a7a4d"/>
+              <stop offset="100%" stop-color="#1f5532"/>
+            </linearGradient>
+          </defs>
+          <!-- Coconut body -->
+          <ellipse cx="100" cy="115" rx="72" ry="68" fill="url(#coco)"/>
+          <!-- Hairy texture (suggested) -->
+          <path d="M40 100 Q45 95 50 105 M55 90 Q60 85 65 95 M75 80 Q80 75 85 85 M115 78 Q120 73 125 83 M140 90 Q145 85 150 95 M160 110 Q165 105 170 115" stroke="#3a2814" stroke-width="1.2" fill="none" opacity="0.5"/>
+          <!-- Top cut -->
+          <ellipse cx="100" cy="60" rx="48" ry="14" fill="url(#cocoTop)"/>
+          <ellipse cx="100" cy="58" rx="42" ry="10" fill="#f3ece0"/>
+          <!-- Straw -->
+          <rect x="92" y="20" width="6" height="45" rx="2" fill="#d97757" transform="rotate(-12 95 42)"/>
+          <rect x="92" y="20" width="2" height="45" fill="#a85a3f" transform="rotate(-12 95 42)" opacity="0.6"/>
+          <!-- Leaves -->
+          <path d="M100 60 Q60 30 30 45 Q55 50 100 65 Z" fill="url(#leaf)"/>
+          <path d="M100 60 Q140 25 175 38 Q145 50 100 65 Z" fill="url(#leaf)" opacity="0.9"/>
+          <path d="M100 60 Q105 25 90 10 Q95 35 100 65 Z" fill="url(#leaf)" opacity="0.85"/>
+          <!-- Highlight -->
+          <ellipse cx="75" cy="90" rx="14" ry="22" fill="#fff" opacity="0.15"/>
+        </svg>
+      </div>
+      <div class="hero-tag t1"><span class="dot"></span> Cold-pressed daily</div>
+      <div class="hero-tag t2"><span class="dot"></span> Single origin</div>
+      <div class="hero-tag t3"><span class="dot"></span> Plastic-free</div>
+    </div>
+  </div>
+
+  <!-- Animated wave divider -->
+  <div class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-anim" d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,100 L0,100 Z" fill="#faf6ef"/>
+      <path class="wave-anim" style="animation-duration: 18s; animation-direction: reverse;" d="M0,70 C240,30 480,90 720,50 C960,30 1200,80 1440,50 L1440,100 L0,100 Z" fill="#faf6ef" opacity="0.5"/>
+    </svg>
+  </div>
+</header>
+
+<!-- =========================================================
+     ABOUT  ·  Brand story · split layout
+========================================================== -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-image reveal">
+      <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=900&q=80" alt="Coconut palm leaves against blue sky" />
+      <div class="about-badge">
+        <div class="about-badge-icon">&#10003;</div>
+        <div class="about-badge-text">
+          <strong>USDA Organic</strong>
+          <span>Certified since 2019</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-copy">
+      <span class="eyebrow reveal">Our Story</span>
+      <h2 class="reveal d1">A brand born by<br/>the <em>turquoise tides.</em></h2>
+      <p class="reveal d2">Coco Bliss began on a small stretch of coastline where the palms lean a little deeper into the wind. We work with seven generations of grove keepers who hand-pick every coconut at the perfect moment of ripeness.</p>
+      <p class="reveal d2">No additives, no shortcuts, no compromise. Just the slow, sun-drawn sweetness of the islands &mdash; bottled, milled, and shipped to you within seventy-two hours of harvest.</p>
+
+      <div class="about-features reveal d3">
+        <div class="about-feat">
+          <div class="about-feat-icon">&#127795;</div>
+          <div><strong>Hand-Harvested</strong><span>Single-origin coastal groves</span></div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon">&#9728;</div>
+          <div><strong>Cold-Pressed</strong><span>Raw nutrients preserved</span></div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon">&#9851;</div>
+          <div><strong>Zero Waste</strong><span>Plastic-free, fully compostable</span></div>
+        </div>
+        <div class="about-feat">
+          <div class="about-feat-icon">&#9825;</div>
+          <div><strong>Fair Trade</strong><span>Direct partnerships, fair pay</span></div>
+        </div>
+      </div>
+
+      <a href="#products" class="btn btn-primary reveal d4">
+        <span>Discover Products</span>
+        <span class="btn-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PRODUCTS  ·  4-card grid
+========================================================== -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal">The Collection</span>
+      <h2 class="reveal d1">Crafted from <em>one fruit.</em></h2>
+      <p class="reveal d2">Four expressions of the coconut &mdash; refreshing, nourishing, golden, and crisp. Each made with the same care, the same single-origin source.</p>
+    </div>
+
+    <div class="product-grid">
+      <!-- Coconut Water -->
+      <article class="product-card reveal">
+        <div class="product-visual v1">
+          <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <rect x="35" y="20" width="30" height="85" rx="6" fill="#f8f5ed" stroke="#5a4128" stroke-width="1.5"/>
+            <rect x="35" y="20" width="30" height="20" rx="6" fill="#5a4128"/>
+            <rect x="38" y="48" width="24" height="50" rx="2" fill="oklch(0.85 0.05 200)" opacity="0.7"/>
+            <ellipse cx="50" cy="35" rx="8" ry="3" fill="#fff" opacity="0.4"/>
+          </svg>
+        </div>
+        <span class="product-tag">Hydrate</span>
+        <h3 class="product-name">Coconut Water</h3>
+        <p class="product-desc">Crisp, electrolyte-rich water tapped from young green coconuts.</p>
+        <div class="product-foot">
+          <div class="product-price">$8 <small>/ 500ml</small></div>
+          <button class="product-buy" aria-label="Add to cart">+</button>
+        </div>
+      </article>
+
+      <!-- Coconut Oil -->
+      <article class="product-card reveal d1">
+        <div class="product-visual v2">
+          <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="105" rx="32" ry="6" fill="#5a4128" opacity="0.3"/>
+            <path d="M28 35 L72 35 L70 100 Q70 108 50 108 Q30 108 30 100 Z" fill="#f3ece0" stroke="#5a4128" stroke-width="1.5"/>
+            <rect x="36" y="20" width="28" height="18" rx="2" fill="#5a4128"/>
+            <path d="M30 55 L70 55 L68 95 Q68 105 50 105 Q32 105 32 95 Z" fill="oklch(0.85 0.1 80)" opacity="0.6"/>
+          </svg>
+        </div>
+        <span class="product-tag">Nourish</span>
+        <h3 class="product-name">Coconut Oil</h3>
+        <p class="product-desc">Virgin cold-pressed oil &mdash; for cooking, for skin, for everything.</p>
+        <div class="product-foot">
+          <div class="product-price">$14 <small>/ 250ml</small></div>
+          <button class="product-buy" aria-label="Add to cart">+</button>
+        </div>
+      </article>
+
+      <!-- Coconut Milk -->
+      <article class="product-card reveal d2">
+        <div class="product-visual v3">
+          <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 25 L68 25 L66 30 L66 105 Q66 110 50 110 Q34 110 34 105 L34 30 Z" fill="#fafafa" stroke="#5a4128" stroke-width="1.5"/>
+            <rect x="34" y="40" width="32" height="40" fill="oklch(0.42 0.09 155)" opacity="0.9"/>
+            <text x="50" y="62" text-anchor="middle" fill="#fff" font-family="serif" font-size="10" font-style="italic">Bliss</text>
+            <text x="50" y="74" text-anchor="middle" fill="#fff" font-family="sans-serif" font-size="5" letter-spacing="1.5">MILK</text>
+          </svg>
+        </div>
+        <span class="product-tag">Creamy</span>
+        <h3 class="product-name">Coconut Milk</h3>
+        <p class="product-desc">Silky barista-grade milk for coffee, curries and quiet mornings.</p>
+        <div class="product-foot">
+          <div class="product-price">$6 <small>/ 1L</small></div>
+          <button class="product-buy" aria-label="Add to cart">+</button>
+        </div>
+      </article>
+
+      <!-- Coconut Snacks -->
+      <article class="product-card reveal d3">
+        <div class="product-visual v4">
+          <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 40 Q22 32 30 32 L70 32 Q78 32 78 40 L75 100 Q75 108 65 108 L35 108 Q25 108 25 100 Z" fill="oklch(0.55 0.1 50)" stroke="#3a2814" stroke-width="1.5"/>
+            <rect x="32" y="48" width="36" height="44" fill="#faf6ef" opacity="0.95"/>
+            <circle cx="42" cy="60" r="3" fill="#8b6a4a"/>
+            <circle cx="55" cy="68" r="2.5" fill="#8b6a4a"/>
+            <circle cx="48" cy="78" r="3" fill="#8b6a4a"/>
+            <circle cx="60" cy="84" r="2" fill="#8b6a4a"/>
+            <text x="50" y="42" text-anchor="middle" fill="#faf6ef" font-family="serif" font-size="7" font-style="italic">Bliss</text>
+          </svg>
+        </div>
+        <span class="product-tag">Crunch</span>
+        <h3 class="product-name">Coconut Snacks</h3>
+        <p class="product-desc">Toasted chips &amp; clusters &mdash; lightly salted, gently sweet.</p>
+        <div class="product-foot">
+          <div class="product-price">$5 <small>/ 80g</small></div>
+          <button class="product-buy" aria-label="Add to cart">+</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     GALLERY  ·  Tropical lifestyle imagery
+========================================================== -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal">Postcards from the Grove</span>
+      <h2 class="reveal d1">A view of <em>the everyday.</em></h2>
+      <p class="reveal d2">Glimpses of the coast where every Coco Bliss product begins.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <a href="#" class="gallery-item g1 reveal">
+        <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=900&q=80" alt="Palm trees against blue sky"/>
+        <div class="gallery-caption"><span>The Grove</span>Where the palms lean</div>
+      </a>
+      <a href="#" class="gallery-item g2 reveal d1">
+        <img src="https://images.unsplash.com/photo-1437846972679-9e6e537be46e?w=600&q=80" alt="Coconut on the beach"/>
+        <div class="gallery-caption"><span>Beach Life</span>Sand &amp; salt</div>
+      </a>
+      <a href="#" class="gallery-item g3 reveal d2">
+        <img src="https://images.unsplash.com/photo-1580984969071-a8da5656c2fb?w=600&q=80" alt="Sliced coconut"/>
+        <div class="gallery-caption"><span>The Product</span>Hand-cut, fresh</div>
+      </a>
+      <a href="#" class="gallery-item g4 reveal d1">
+        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&q=80" alt="Sunset tropical beach"/>
+        <div class="gallery-caption"><span>Golden Hour</span>Where it ripens</div>
+      </a>
+      <a href="#" class="gallery-item g5 reveal d2">
+        <img src="https://images.unsplash.com/photo-1481277542470-605612bd2d61?w=600&q=80" alt="Coconut drink"/>
+        <div class="gallery-caption"><span>The Drink</span>Served cold</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     TESTIMONIALS  ·  Modern review cards
+========================================================== -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow reveal">Kind Words</span>
+      <h2 class="reveal d1">Loved by the <em>quietly thirsty.</em></h2>
+      <p class="reveal d2">A small selection of reviews from people who tasted the difference.</p>
+    </div>
+
+    <div class="testimonial-grid">
+      <article class="test-card reveal">
+        <div class="test-quote">&ldquo;</div>
+        <div class="test-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <p class="test-body">It actually tastes like a coconut you'd crack open on a beach &mdash; not the watered-down stuff from the supermarket. I won't buy anything else now.</p>
+        <div class="test-author">
+          <div class="test-avatar">MR</div>
+          <div>
+            <strong>Maya Reyes</strong>
+            <span>Yoga teacher · Lisbon</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="test-card reveal d1">
+        <div class="test-quote">&ldquo;</div>
+        <div class="test-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <p class="test-body">The oil is incredible &mdash; I cook with it, I put it in my hair, my partner uses it on his beard. One jar, a hundred uses. The packaging is gorgeous too.</p>
+        <div class="test-author">
+          <div class="test-avatar">JT</div>
+          <div>
+            <strong>Jordan Tanaka</strong>
+            <span>Chef · Brooklyn</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="test-card reveal d2">
+        <div class="test-quote">&ldquo;</div>
+        <div class="test-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <p class="test-body">The milk transformed my morning coffee. Smooth, creamy, none of that chalky aftertaste other brands have. I genuinely look forward to breakfast now.</p>
+        <div class="test-author">
+          <div class="test-avatar">AK</div>
+          <div>
+            <strong>Amara Khouri</strong>
+            <span>Designer · Marseille</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CONTACT  ·  Stylish form
+========================================================== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid reveal">
+      <div class="contact-copy">
+        <span class="eyebrow">Say Hello</span>
+        <h2>Let's talk <em>coconuts.</em></h2>
+        <p>Questions about wholesale, our sourcing, or just want to say hi? Our team replies within one working day &mdash; usually with sand still on their shoes.</p>
+        <div class="contact-info">
+          <div class="contact-line">
+            <div class="contact-line-ico">&#9993;</div>
+            <span>manooppta@gmail.com</span>
+          </div>
+          <div class="contact-line">
+            <div class="contact-line-ico">&#9742;</div>
+            <span>+91 7558817250</span>
+          </div>
+          <div class="contact-line">
+            <div class="contact-line-ico">&#9873;</div>
+            <span>Pathanamthitta</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required placeholder="Jane Doe"/>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="jane@example.com"/>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Tell us what's on your mind..."></textarea>
+        </div>
+        <button type="submit" class="form-submit"><span>Send Message &rarr;</span></button>
+        <div class="form-success" id="formSuccess">Thanks! Your message is sailing our way. &#9986;</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+<footer class="footer">
+  <!-- Decorative wave above footer -->
+  <div class="footer-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="oklch(0.32 0.05 50)"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3><span class="brand-mark"></span> Coco<em>Bliss</em></h3>
+        <p>Single-origin, hand-harvested coconut goods from sun-warmed coasts. Made slowly, shipped fairly, kept simple.</p>
+        <div class="socials">
+          <a href="#" class="social" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" class="social" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l-6 8 7 8h-4l-5-6-4 6H4l6-9-7-7h4l5 6 4-6z"/></svg>
+          </a>
+          <a href="#" class="social" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7a1 1 0 011-1h2V3h-3a4 4 0 00-4 4v2H8v3h2v8h3v-8h3l1-3z"/></svg>
+          </a>
+          <a href="#" class="social" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 8a3 3 0 00-2.1-2.1C18.2 5.5 12 5.5 12 5.5s-6.2 0-7.9.4A3 3 0 002 8c-.4 1.7-.4 4-.4 4s0 2.3.4 4a3 3 0 002.1 2.1c1.7.4 7.9.4 7.9.4s6.2 0 7.9-.4A3 3 0 0022 16c.4-1.7.4-4 .4-4s0-2.3-.4-4zM10 15V9l5 3-5 3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#products">Coconut Water</a></li>
+          <li><a href="#products">Coconut Oil</a></li>
+          <li><a href="#products">Coconut Milk</a></li>
+          <li><a href="#products">Snacks &amp; Bites</a></li>
+          <li><a href="#products">Gift Sets</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Brand</h4>
+        <ul>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#about">Sustainability</a></li>
+          <li><a href="#gallery">Journal</a></li>
+          <li><a href="#testimonials">Press</a></li>
+          <li><a href="#contact">Wholesale</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bot">
+      <span>&copy; 2026 Coco Bliss &middot; Licensed by <em>Akumenbyq</em> &middot; Manoop &middot; Pathanamthitta &middot; manooppta@gmail.com &middot; +91 7558817250</span>
+      <span>Privacy &middot; Terms &middot; Accessibility</span>
+    </div>
+  </div>
+</footer>
+
+<!-- =========================================================
+     MUSIC TOGGLE  ·  Ambient tropical loop
+========================================================== -->
+<button class="music-toggle" id="musicToggle" aria-label="Toggle tropical ambient sound">
+  <span class="music-tooltip" id="musicTip">Play tropical ambience</span>
+  <svg id="musicIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M9 18V6l11-2v12" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <circle cx="6" cy="18" r="3"/>
+    <circle cx="17" cy="16" r="3"/>
+  </svg>
+</button>
+
+<!-- =========================================================
+     SCRIPT  ·  Loader, nav, reveal, form, music, floaters
+========================================================== -->
+<script>
+/* ---------- LOADER ---------- */
+window.addEventListener("load", () => {
+  setTimeout(() => document.getElementById("loader").classList.add("hide"), 900);
+});
+
+/* ---------- NAV SHRINK ON SCROLL ---------- */
+const nav = document.getElementById("nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 30);
+});
+
+/* ---------- MOBILE NAV ---------- */
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
+navToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
+navLinks.querySelectorAll("a").forEach(a =>
+  a.addEventListener("click", () => navLinks.classList.remove("open"))
+);
+
+/* ---------- SCROLL REVEAL ---------- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add("in");
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* ---------- CONTACT FORM ---------- */
+const form = document.getElementById("contactForm");
+const success = document.getElementById("formSuccess");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  success.classList.add("show");
+  form.reset();
+  setTimeout(() => success.classList.remove("show"), 4000);
+});
+
+/* ---------- FLOATING COCONUTS ---------- */
+const floaters = document.getElementById("floaters");
+const coconutSVG = `
+  <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="25" cy="28" r="18" fill="oklch(0.32 0.05 50)"/>
+    <ellipse cx="20" cy="22" rx="5" ry="7" fill="oklch(0.55 0.08 55)" opacity="0.4"/>
+    <path d="M25 10 Q15 4 8 8 Q18 12 25 16 Z" fill="oklch(0.42 0.09 155)"/>
+    <path d="M25 10 Q35 4 42 8 Q32 12 25 16 Z" fill="oklch(0.42 0.09 155)" opacity="0.85"/>
+  </svg>`;
+for (let i = 0; i < 6; i++) {
+  const f = document.createElement("div");
+  f.className = "floater";
+  const size = 28 + Math.random() * 36;
+  f.style.width = size + "px";
+  f.style.height = size + "px";
+  f.style.left = Math.random() * 100 + "vw";
+  f.style.animationDuration = (18 + Math.random() * 18) + "s";
+  f.style.animationDelay = (Math.random() * -20) + "s";
+  f.innerHTML = coconutSVG;
+  floaters.appendChild(f);
+}
+
+/* ---------- MUSIC TOGGLE  ·  WebAudio ambient pad (no external file) ---------- */
+const musicBtn = document.getElementById("musicToggle");
+const musicTip = document.getElementById("musicTip");
+let audioCtx = null, ambientNodes = [];
+
+function startAmbient() {
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  // Layered gentle sine pad — evokes wind / waves
+  const freqs = [220, 277.18, 329.63]; // A3 - C#4 - E4
+  const master = audioCtx.createGain();
+  master.gain.value = 0;
+  master.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime + 1.5);
+  master.connect(audioCtx.destination);
+
+  freqs.forEach((f, i) => {
+    const o = audioCtx.createOscillator();
+    o.type = "sine";
+    o.frequency.value = f;
+    const g = audioCtx.createGain();
+    g.gain.value = 0.25;
+    // Slow LFO for a breathing feel
+    const lfo = audioCtx.createOscillator();
+    lfo.frequency.value = 0.08 + i * 0.04;
+    const lfoG = audioCtx.createGain();
+    lfoG.gain.value = 0.12;
+    lfo.connect(lfoG).connect(g.gain);
+    o.connect(g).connect(master);
+    o.start(); lfo.start();
+    ambientNodes.push(o, lfo);
+  });
+
+  // Filtered noise for a soft "wave" sound
+  const bufferSize = 2 * audioCtx.sampleRate;
+  const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+  const data = noiseBuffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.3;
+  const noise = audioCtx.createBufferSource();
+  noise.buffer = noiseBuffer; noise.loop = true;
+  const filt = audioCtx.createBiquadFilter();
+  filt.type = "lowpass"; filt.frequency.value = 350;
+  const ng = audioCtx.createGain(); ng.gain.value = 0.4;
+  const nlfo = audioCtx.createOscillator();
+  nlfo.frequency.value = 0.12;
+  const nlfoG = audioCtx.createGain(); nlfoG.gain.value = 0.25;
+  nlfo.connect(nlfoG).connect(ng.gain);
+  noise.connect(filt).connect(ng).connect(master);
+  noise.start(); nlfo.start();
+  ambientNodes.push(noise, nlfo);
+}
+
+function stopAmbient() {
+  if (!audioCtx) return;
+  ambientNodes.forEach(n => { try { n.stop(); } catch(e){} });
+  ambientNodes = [];
+  audioCtx.close();
+  audioCtx = null;
+}
+
+musicBtn.addEventListener("click", () => {
+  const playing = musicBtn.classList.toggle("playing");
+  if (playing) {
+    startAmbient();
+    musicTip.textContent = "Pause ambience";
+  } else {
+    stopAmbient();
+    musicTip.textContent = "Play tropical ambience";
+  }
+});
+</script>
+
+</body>
+</html>
