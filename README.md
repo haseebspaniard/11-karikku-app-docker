@@ -20,7 +20,7 @@ This project demonstrates how to take a plain HTML website, containerize it usin
 
 ## 🌐 Website Running in Container
 
-![Website Running](screenshot/website-running.png)
+![Website Running](screenshots/website-running.png)
 
 *Coco Bliss Kerala Edition — served by Apache inside a Docker container at `localhost:8082`*
 
@@ -111,7 +111,7 @@ docker run -d -p 8082:80 karrikuweb:v2
 
 ### 5. Verify — HTTP 200 OK ✅
 
-![Terminal Output](screenshot/terminal-output.png)
+![Terminal Output](screenshots/terminal-output.png)
 
 *`docker images`, `docker ps`, and `curl -I` all showing the container is live and serving correctly*
 
@@ -126,7 +126,7 @@ docker push haseebspaniard/karrikuweb:latest
 
 ### 7. Pull and Test from Docker Hub
 
-![Docker Hub](screenshot/dockerhub-repo.png)
+![Docker Hub](screenshots/dockerhub-repo.png)
 
 *Image publicly available on Docker Hub — 43 pulls and counting*
 
@@ -143,7 +143,7 @@ See [docs/workflow.md](docs/workflow.md) for the full step-by-step breakdown.
 
 Ran into errors during this project? So did I. One of the key issues was a broken `v1` image where `index.html` was accidentally a directory — causing Apache to issue a 301 redirect that landed on a completely different WordPress site:
 
-![301 Error](screenshot/301-error.png)
+![301 Error](screenshots/301-error.png)
 
 *The 301 redirect from the broken container landing on the local WordPress site*
 
