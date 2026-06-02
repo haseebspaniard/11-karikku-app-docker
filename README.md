@@ -18,6 +18,14 @@ This project demonstrates how to take a plain HTML website, containerize it usin
 
 ---
 
+## 🌐 Website Running in Container
+
+![Website Running](screenshot/website-running.png)
+
+*Coco Bliss Kerala Edition — served by Apache inside a Docker container at `localhost:8082`*
+
+---
+
 ## 🏗️ Architecture
 
 ```
@@ -101,11 +109,11 @@ docker image build -t karrikuweb:v2 .
 docker run -d -p 8082:80 karrikuweb:v2
 ```
 
-### 5. Verify
-```bash
-curl -I http://localhost:8082
-# Expected: HTTP/1.1 200 OK
-```
+### 5. Verify — HTTP 200 OK ✅
+
+![Terminal Output](screenshot/terminal-output.png)
+
+*`docker images`, `docker ps`, and `curl -I` all showing the container is live and serving correctly*
 
 ### 6. Tag and Push to Docker Hub
 ```bash
@@ -117,6 +125,11 @@ docker push haseebspaniard/karrikuweb:latest
 ```
 
 ### 7. Pull and Test from Docker Hub
+
+![Docker Hub](screenshot/dockerhub-repo.png)
+
+*Image publicly available on Docker Hub — 43 pulls and counting*
+
 ```bash
 docker rmi haseebspaniard/karrikuweb:v2
 docker run -d -p 8083:80 haseebspaniard/karrikuweb:v2
@@ -128,9 +141,13 @@ See [docs/workflow.md](docs/workflow.md) for the full step-by-step breakdown.
 
 ## 🔧 Troubleshooting
 
-Ran into errors during this project? So did I.
+Ran into errors during this project? So did I. One of the key issues was a broken `v1` image where `index.html` was accidentally a directory — causing Apache to issue a 301 redirect that landed on a completely different WordPress site:
 
-See [docs/troubleshooting.md](docs/troubleshooting.md) for all the issues faced and how they were resolved.
+![301 Error](screenshot/301-error.png)
+
+*The 301 redirect from the broken container landing on the local WordPress site*
+
+See [docs/troubleshooting.md](docs/troubleshooting.md) for all issues faced and how they were resolved.
 
 ---
 
