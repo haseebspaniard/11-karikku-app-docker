@@ -1,4 +1,4 @@
-# 🔧 Troubleshooting — Errors & Fixes
+# Troubleshooting — Errors & Fixes
 
 This document covers all the real errors encountered during this project and exactly how they were resolved. This is meant to help others who face the same issues.
 
