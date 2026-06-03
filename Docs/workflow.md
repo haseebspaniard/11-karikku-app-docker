@@ -1,4 +1,4 @@
-# 🚀 Full Workflow — Step by Step
+# Full Workflow — Step by Step
 
 This document walks through the entire project from start to finish.
 
