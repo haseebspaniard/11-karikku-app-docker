@@ -1,10 +1,10 @@
-# 🐳 Dockerizing a Static Website with Apache HTTPD
+# Dockerizing a Static Website with Apache HTTPD
 
 > Containerizing the **Karikku** static website using Docker and Apache (`httpd:alpine`), pushing to Docker Hub, and running it as a production-ready container.
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This project demonstrates how to take a plain HTML website, containerize it using Docker with an Apache web server, and deploy it via Docker Hub — following a real-world DevOps workflow.
 
@@ -18,7 +18,7 @@ This project demonstrates how to take a plain HTML website, containerize it usin
 
 ---
 
-## 🌐 Website Running in Container
+## Website Running in Container
 
 ![Website Running](screenshots/website-running.png)
 
@@ -26,7 +26,7 @@ This project demonstrates how to take a plain HTML website, containerize it usin
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 Local Machine
@@ -53,7 +53,7 @@ See [docs/architecture.md](docs/architecture.md) for full details.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 11-karikku-app-docker/
@@ -70,7 +70,7 @@ See [docs/architecture.md](docs/architecture.md) for full details.
 
 ---
 
-## 🐳 Dockerfile
+## Dockerfile
 
 ```dockerfile
 FROM httpd:alpine
@@ -84,7 +84,7 @@ See [docs/dockerfile.md](docs/dockerfile.md) for line-by-line explanation.
 
 ---
 
-## 🚀 Workflow
+## Workflow
 
 ### 1. Prepare the Website Files
 ```bash
@@ -109,7 +109,7 @@ docker image build -t karrikuweb:v2 .
 docker run -d -p 8082:80 karrikuweb:v2
 ```
 
-### 5. Verify — HTTP 200 OK ✅
+### 5. Verify — HTTP 200 OK 
 
 ![Terminal Output](screenshots/terminal-output.png)
 
@@ -139,7 +139,7 @@ See [docs/workflow.md](docs/workflow.md) for the full step-by-step breakdown.
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 Ran into errors during this project? So did I. One of the key issues was a broken `v1` image where `index.html` was accidentally a directory — causing Apache to issue a 301 redirect that landed on a completely different WordPress site:
 
@@ -151,7 +151,7 @@ See [docs/troubleshooting.md](docs/troubleshooting.md) for all issues faced and 
 
 ---
 
-## 🐋 Docker Hub
+## Docker Hub
 
 The image is publicly available:
 
@@ -160,11 +160,11 @@ docker pull haseebspaniard/karrikuweb:v2
 docker run -d -p 8080:80 haseebspaniard/karrikuweb:v2
 ```
 
-🔗 [hub.docker.com/r/haseebspaniard/karrikuweb](https://hub.docker.com/r/haseebspaniard/karrikuweb)
+[hub.docker.com/r/haseebspaniard/karrikuweb](https://hub.docker.com/r/haseebspaniard/karrikuweb)
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Apache](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white)
@@ -173,11 +173,11 @@ docker run -d -p 8080:80 haseebspaniard/karrikuweb:v2
 
 ---
 
-## 👤 Author
+## Author
 
 **Abdul Haseeb**
 Cloud & DevOps Learner | Former CS Teacher (3.5 years)
 
-🔗 [LinkedIn](https://www.linkedin.com/in/abdulhaseebas)
-🐙 [GitHub](https://github.com/haseebspaniard)
-✍️ [Medium](https://medium.com/@haseebabdul480)
+[LinkedIn](https://www.linkedin.com/in/abdulhaseebas)
+[GitHub](https://github.com/haseebspaniard)
+[Medium](https://medium.com/@haseebabdul480)
