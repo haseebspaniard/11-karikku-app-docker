@@ -1,4 +1,4 @@
-# 🐳 Dockerfile — Line by Line
+# Dockerfile — Line by Line
 
 ## The Final Dockerfile
 
